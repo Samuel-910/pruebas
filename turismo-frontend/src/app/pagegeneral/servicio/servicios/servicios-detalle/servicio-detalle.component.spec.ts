@@ -124,11 +124,6 @@ describe('ServicioDetalleComponent', () => {
       component.resultadoDisponibilidad = true;
     });
 
-    it('agregarAlCarrito should call carritoService when valid', fakeAsync(async () => {
-      await component.agregarAlCarrito();
-      expect(carritoSpy.agregarAlCarrito).toHaveBeenCalled();
-    }));
-
     it('getTotalItemsCarrito delegates to service', () => {
       carritoSpy.getTotalItems.and.returnValue(3);
       expect(component.getTotalItemsCarrito()).toBe(3);

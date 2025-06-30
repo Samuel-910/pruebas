@@ -77,6 +77,7 @@ export class AuthService {
       this.userLoadAttempted = true;
       return of(null);
     }
+    
 
     // Marcamos que estamos cargando
     this.userLoading.next(true);
@@ -360,6 +361,14 @@ export class AuthService {
         catchError(error => this.handleError(error))
       );
   }
+  // Métodos para actualizar:
+setUser(user: User) {
+  this._currentUser.set(user);
+}
+
+setAdministraEmprendimientos(value: boolean) {
+  this._administraEmprendimientos.set(value);
+}
   
   // Manejar callback de Google
   handleGoogleCallback(token: string, code: string): Observable<AuthResponse> {

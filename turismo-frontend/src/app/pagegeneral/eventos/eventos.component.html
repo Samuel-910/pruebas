@@ -21,26 +21,78 @@ background-size: cover; background-position: center; background-repeat: no-repea
     </p>
   </div>
 </section>
-
 <!-- calendario -->
 <div class=" top-24 z-40 px-4 pb-8 dark:bg-gray-800">
   <div class="bg-white/10 dark:bg-gray-800 backdrop-blur-xl  rounded-2xl p-4 shadow-2xl">
     <div class="flex flex-wrap gap-4 items-center justify-center">
 
-      <!-- Botón calendario -->
+      <!-- Botón calendario mejorado -->
       <button type="button"
-        class="group relative overflow-hidden px-6 py-3 bg-orange-500 text-white rounded-xl font-bold transition-all duration-300 hover:bg-orange-600 hover:scale-105 hover:shadow-lg hover:shadow-orange-500/50"
+        class="calendar-btn-main"
         (click)="mostrarModalCalendario = true">
-        <span
-          class="absolute inset-0 bg-white/20 transform scale-x-0 group-hover:scale-x-100 transition-transform origin-center duration-300"></span>
-        <span class="relative z-10 flex items-center">
-          <i class="fas fa-calendar-days mr-2 group-hover:animate-pulse"></i>
-          Ver Calendario
-        </span>
+        <i class="fas fa-calendar-days icon"></i>
+        Ver Calendario
       </button>
     </div>
   </div>
 </div>
+
+<style>
+/* Diseño Principal Mejorado */
+.calendar-btn-main {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px 32px;
+    background: linear-gradient(135deg, #ff6b35, #f7931e);
+    color: white;
+    border: none;
+    border-radius: 16px;
+    font-weight: 700;
+    font-size: 16px;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 
+        0 8px 25px rgba(255, 107, 53, 0.3),
+        0 4px 10px rgba(0, 0, 0, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+.calendar-btn-main::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: left 0.6s ease;
+}
+.calendar-btn-main:hover::before {
+    left: 100%;
+}
+.calendar-btn-main:hover {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 
+        0 12px 35px rgba(255, 107, 53, 0.4),
+        0 8px 15px rgba(0, 0, 0, 0.15),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    background: linear-gradient(135deg, #ff7849, #ff9500);
+}
+.calendar-btn-main:active {
+    transform: translateY(-1px) scale(0.98);
+}
+.calendar-btn-main .icon {
+    margin-right: 12px;
+    font-size: 18px;
+    transition: transform 0.3s ease;
+}
+.calendar-btn-main:hover .icon {
+    transform: scale(1.1) rotate(5deg);
+}
+</style>
 
 <div class="dark:bg-gray-800">
 <!-- MODAL DE CALENDARIO FUTURISTA -->
@@ -269,7 +321,7 @@ background-size: cover; background-position: center; background-repeat: no-repea
     <div class="flex flex-col lg:flex-row gap-10 items-start">
       <!-- Imagen -->
       <div class="flex-shrink-0 w-full lg:w-1/2">
-        <img [src]="eventoCercano.sliders[0]?.url_completa"
+        <img [src]="eventoCercano.sliders[0].url_completa"
           class="w-full h-[300px] rounded-2xl object-cover shadow-lg border border-gray-300 dark:border-gray-600"
           alt="Imagen del evento" />
       </div>
@@ -423,7 +475,7 @@ background-size: cover; background-position: center; background-repeat: no-repea
 
     <!-- Botón aplicar filtros -->
     <button 
-      class="flex items-center gap-2 px-6 py-2.5 bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white font-medium text-sm rounded-xl shadow-sm hover:shadow-md transform hover:-translate-y-0.5 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2 dark:focus:ring-offset-gray-900">
+      class="calendar-btn-main">
       <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.707A1 1 0 013 7V4z"></path>
       </svg>
@@ -492,7 +544,7 @@ background-size: cover; background-position: center; background-repeat: no-repea
       <div class="relative h-[420px] group">
         <!-- Fondo imagen con zoom -->
         <div class="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-105"
-          [style.backgroundImage]="'url(' + evento.sliders[0]?.url_completa + ')'"></div>
+          [style.backgroundImage]="'url(' + evento.sliders[0].url_completa + ')'"></div>
 
         <!-- Degradado oscuro -->
         <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent"></div>
